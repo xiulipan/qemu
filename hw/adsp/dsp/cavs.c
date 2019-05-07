@@ -567,56 +567,44 @@ static void cavs_irq_write(void *opaque, hwaddr addr,
         }
         break;
     case ILMCD(2):
-         /* mask clear - level 2 */
-         if (info->region[ILMC(2) >> 2] & val) {
-             info->region[ILMC(2) >> 2] &= ~val;
+        /* mask clear - level 2 */
+        if (info->region[ILMC(2) >> 2] & val) {
+            info->region[ILMC(2) >> 2] &= ~val;
 
             info->region[ILSC(2) >> 2] =
                 (~info->region[ILMC(2) >> 2]) & info->region[ILRSD(2) >> 2];
-
-            if (!info->region[ILSC(2) >> 2])
-                 adsp_set_lvl1_irq(adsp, IRQ_NUM_EXT_LEVEL2, 1);
         }
         break;
-     case ILMCD(3):
-         /* mask clear - level 3 */
-         if (info->region[ILMC(3) >> 2] & val) {
-             info->region[ILMC(3) >> 2] &= ~val;
+    case ILMCD(3):
+        /* mask clear - level 3 */
+        if (info->region[ILMC(3) >> 2] & val) {
+            info->region[ILMC(3) >> 2] &= ~val;
 
             info->region[ILSC(3) >> 2] =
                 (~info->region[ILMC(3) >> 2]) & info->region[ILRSD(3) >> 2];
-
-            if (!info->region[ILSC(3) >> 2])
-                 adsp_set_lvl1_irq(adsp, IRQ_NUM_EXT_LEVEL3, 1);
         }
         break;
-     case ILMCD(4):
-         /* mask clear - level 4 */
-         if (info->region[ILMC(4) >> 2] & val) {
-             info->region[ILMC(4) >> 2] &= ~val;
+    case ILMCD(4):
+        /* mask clear - level 4 */
+        if (info->region[ILMC(4) >> 2] & val) {
+            info->region[ILMC(4) >> 2] &= ~val;
 
             info->region[ILSC(4) >> 2] =
                 (~info->region[ILMC(4) >> 2]) & info->region[ILRSD(4) >> 2];
-
-            if (!info->region[ILSC(4) >> 2])
-                 adsp_set_lvl1_irq(adsp, IRQ_NUM_EXT_LEVEL4, 1);
         }
         break;
 
-     case ILMCD(5):
-         /* mask clear - level 5 */
-         if (info->region[ILMC(5) >> 2] & val) {
-             info->region[ILMC(5) >> 2] &= ~val;
+    case ILMCD(5):
+        /* mask clear - level 5 */
+        if (info->region[ILMC(5) >> 2] & val) {
+            info->region[ILMC(5) >> 2] &= ~val;
 
             info->region[ILSC(5) >> 2] =
                 (~info->region[ILMC(5) >> 2]) & info->region[ILRSD(5) >> 2];
-
-            if (!info->region[ILSC(5) >> 2])
-                 adsp_set_lvl1_irq(adsp, IRQ_NUM_EXT_LEVEL5, 1);
         }
         break;
     default:
-    break;
+        break;
     }
 
     log_write(adsp->log, space, addr, val, size,
